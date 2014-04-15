@@ -4,17 +4,18 @@ node-mongo-secure
 Node.js server using MongoDB with user authentication
 
 
-# Update a mongodb.conf (can be a temporary file for testing)
+### Update a mongodb.conf 
+*(can be a temporary file for testing)*
 
       auth = true
 
 
-# Launch Mongo with this config file
+### Launch Mongo with this config file
 
       mongod --config mongodb.conf
 
 
-# Create a User Admin
+### Create a User Admin
 
       use admin
       db.createUser(
@@ -32,12 +33,12 @@ Node.js server using MongoDB with user authentication
       )
 
 
-# Login with User Admin
+### Login with User Admin
 
       mongo -u siteUserAdmin -p password --authenticationDatabase admin
 
 
-# Create a role
+### Create a role
 
       use admin
       db.createRole({
@@ -68,7 +69,7 @@ Node.js server using MongoDB with user authentication
       })
 
 
-# Create new user with this role
+### Create new user with this role
 
       use admin
       db.createUser(
@@ -80,19 +81,20 @@ Node.js server using MongoDB with user authentication
       )
 
 
-# Login with reportsUser
+### Login with reportsUser
 
       mongo -u reportsUser -p 12345678 --authenticationDatabase admin
 
 
-# Test reportsUser access
+### Test reportsUser access
 
       use reports
       db.report.insert({foo: 1, bar: "2"})
+      db.report.find()
 
 
 
-# Using reportsUser in a Node.js project
+### Using reportsUser in a Node.js project
 
       var MongoClient = require('mongodb').MongoClient;
 
